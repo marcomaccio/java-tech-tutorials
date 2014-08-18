@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<XMLSession xmlns="http://marmac.name/tutorials/java/jaxb/xmlclientserver/session">
+
+    <!-- Example of Client Request XML -->
+    <XMLClientSession>
+
+    <newAsset>
+        <description>test</description>
+    </newAsset>
+    </XMLClientSession>
+
+    <!-- Example of Server Response XML -->
+    <XMLServerSession>
+        <result>
+            <description>result</description>
+        </result>
+    </XMLServerSession>
+
+</XMLSession>

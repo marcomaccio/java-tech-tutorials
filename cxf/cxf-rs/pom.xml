@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>cxf</artifactId>
+        <groupId>name.marmac.tutorials.java</groupId>
+        <version>1.0.4-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>cxf-rs</artifactId>
+
+    <name>JAVA TECH TUTORIALS :: CXF :: CXF-RS</name>
+    <description>A Simple Tutorial on REStful API with Apache CXF </description>
+    <url>cxf-rs</url>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                  <include>**/*</include>
+                </includes>
+              </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${source.java.compliancy.version}</source>
+                    <target>${target.java.compliancy.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>${maven-jaxb2-plugin.version}</version>
+                <configuration>
+
+                    <schemaDirectory>${basedir}/src/main/webapp/WEB-INF/xsd</schemaDirectory>
+                    <bindingDirectory>${basedir}/src/main/resources/bindings</bindingDirectory>
+                    <generateDirectory>${project.build.directory}/generated-sources/java</generateDirectory>
+                    <strict>false</strict>
+                    <extension>true</extension>
+
+                    <plugins>
+                        <plugin>
+                            <groupId>org.jvnet.jaxb2_commons</groupId>
+                            <artifactId>jaxb2-basics</artifactId>
+                            <version>${jaxb2-basics.version}</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.jvnet.jaxb2_commons</groupId>
+                            <artifactId>jaxb2-basics-annotate</artifactId>
+                            <version>${jaxb2-basics-annotate.version}</version>
+                        </plugin>
+                    </plugins>
+                    <args>
+                        <arg>-Xannotate</arg>
+                    </args>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-wadl2java-plugin</artifactId>
+                <version>${cxf.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-sources</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <sourceRoot>${basedir}/target/generated-sources/java</sourceRoot>
+                            <wadlOptions>
+                            <!-- CustomerService Example -->
+                                <wadlOption>
+                                    <wadl>${basedir}/src/main/webapp/WEB-INF/wadl/CustomerProvisioningService.wadl</wadl>
+                                    <extraargs>
+                                        <extraarg>-interface</extraarg>
+                                        <extraarg>-verbose</extraarg>
+                                        <!---->
+                                        <extraarg>-xjc-Xdv</extraarg>
+                                        <extraarg>-noTypes</extraarg>
+                                        <extraarg>-tMap</extraarg>
+                                        <extraarg>{http://marmac.name/tutorials/java/cxf/model/to/customers/}customers=name.marmac.tutorials.java.cxf.model.to.customers.CustomersTOType</extraarg>
+
+                                    </extraargs>
+
+                                    <packagename>name.marmac.tutorials.java.cxf.services.web.rest.api.customerservice</packagename>
+                                    <schemaPackagenames>
+                                       <schemaPackagename>http://marmac.name/tutorials/java/cxf/model/to/customers/=name.marmac.tutorials.java.cxf.model.to.customers</schemaPackagename>
+                                    </schemaPackagenames>
+                                </wadlOption>
+
+                            </wadlOptions>
+                        </configuration>
+                        <goals>
+                            <goal>wadl2java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- add generated source classes as project sources for compilation -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${basedir}/target/generated-sources/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty-maven-plugin.version}</version>
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <webApp>
+                        <contextPath>/cxf-rs</contextPath>
+                    </webApp>
+
+                    <!--     -->
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                        <port>9092</port>
+                        <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!-- Springframework Dependencies -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- javax.xml.bind
+        <dependency>
+            <groupId>org.apache.servicemix.specs</groupId>
+            <artifactId>org.apache.servicemix.specs.jaxb-api-2.2</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        -->
+
+        <!-- javax.ws.rs
+        <dependency>
+            <groupId>org.apache.servicemix.specs</groupId>
+            <artifactId>org.apache.servicemix.specs.jsr311-api-1.1.1</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        -->
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>7.0</version>
+        </dependency>
+
+        <dependency>
+           <groupId>org.apache.cxf</groupId>
+           <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+           <version>${cxf.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-extension-providers</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-extension-search</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+
+        <dependency>
+          <groupId>org.codehaus.jackson</groupId>
+          <artifactId>jackson-jaxrs</artifactId>
+          <version>1.9.13</version>
+        </dependency>
+
+        <!-- -->
+        <dependency>
+          <groupId>org.codehaus.jackson</groupId>
+          <artifactId>jackson-core-asl</artifactId>
+          <version>1.9.13</version>
+        </dependency>
+
+        <dependency>
+          <groupId>org.codehaus.jackson</groupId>
+          <artifactId>jackson-xc</artifactId>
+          <version>1.9.13</version>
+        </dependency>
+
+        <dependency>
+          <groupId>org.codehaus.jackson</groupId>
+          <artifactId>jackson-mapper-asl</artifactId>
+          <version>1.9.13</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-jaxb-annotations</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+
+        <!--
+        <dependency>
+            <groupId>org.codehaus.jettison</groupId>
+            <artifactId>jettison</artifactId>
+            <version>1.3</version>
+        </dependency>
+        -->
+    </dependencies>
+
+    <reporting>
+          <outputDirectory>${basedir}/target/site</outputDirectory>
+    </reporting>
+
+    <profiles>
+        <profile>
+            <id>WebClient</id>
+            <build>
+                <defaultGoal>test</defaultGoal>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.2.1</version>
+                        <executions>
+                            <execution>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                                <configuration>
+                                    <mainClass>name.marmac.tutorials.java.cxf.services.web.rest.client.CustomerProvisioningWebClient</mainClass>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

@@ -1,0 +1,44 @@
+<xsd:schema
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:customerns="http://marmac.name/tutorials/java/cxf/model/to/customers/"
+        targetNamespace="http://marmac.name/tutorials/java/cxf/model/to/customers/"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified">
+
+    <xsd:complexType name="CustomerTOType">
+        <xsd:sequence>
+            <xsd:element name="firstname"   type="xsd:string"/>
+            <xsd:element name="lastname"    type="xsd:string" />
+            <xsd:element name="customerId"  type="xsd:string"/>
+            <xsd:element name="creationDate"    type="xsd:dateTime"/>
+            <xsd:element name="lastUpdateDate"  type="xsd:dateTime"/>
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:long"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="CustomersTOType">
+        <xsd:sequence>
+            <xsd:element name="total_records"   type="xsd:long" nillable="false" />
+            <xsd:element name="customers"       type="customerns:CustomerTOType" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="customer"    type="customerns:CustomerTOType"/>
+    <xsd:element name="customers"   type="customerns:CustomersTOType"/>
+
+
+
+    <!-- ****************** -->
+    <!-- UnknownCustomerTO Type -->
+    <!-- ****************** -->
+    <xsd:complexType name="unKnownCustomerTOType">
+        <xsd:sequence>
+            <xsd:element name="personId" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- *********************** -->
+    <!-- UnknownCustomer Element -->
+    <!-- *********************** -->
+    <xsd:element name="unknownCustomerFault" type="customerns:unKnownCustomerTOType"/>
+
+</xsd:schema>

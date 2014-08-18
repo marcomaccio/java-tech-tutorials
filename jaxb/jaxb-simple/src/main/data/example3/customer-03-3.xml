@@ -1,0 +1,9 @@
+<exam:student
+        xmlns:exam="http://marmac.name/tutorials/java/jaxb/jaxbsimple/example3/" xmlns:exam1="http://marmac.name/tutorials/java/jaxb/jaxbsimple/example2/">
+
+  <exam1:customerId>string</exam1:customerId>
+  <exam1:firstName>string</exam1:firstName>
+  <exam1:lastName>string</exam1:lastName>
+  <exam1:country>string</exam1:country>
+
+</exam:student>

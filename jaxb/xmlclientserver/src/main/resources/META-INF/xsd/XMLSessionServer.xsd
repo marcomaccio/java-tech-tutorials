@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+        xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://marmac.name/tutorials/java/jaxb/xmlclientserver/session/server/"
+
+        targetNamespace="http://marmac.name/tutorials/java/jaxb/xmlclientserver/session/server/"
+        attributeFormDefault="unqualified"
+        elementFormDefault="qualified" >
+
+
+    <!-- XMLServerSessionType definition -->
+    <complexType name="XMLServerSessionType">
+        <sequence>
+          <element type="tns:resultType" name="result"/>
+        </sequence>
+    </complexType>
+
+
+    <complexType name="resultType">
+        <sequence>
+          <element type="string" name="description"/>
+        </sequence>
+        <attribute type="string" name="command"/>
+        <attribute type="string" name="code"/>
+    </complexType>
+
+</schema>

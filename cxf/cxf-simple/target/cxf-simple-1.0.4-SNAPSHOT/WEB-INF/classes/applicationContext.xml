@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+    http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+	>
+
+	<!-- Load CXF modules from cxf.jar -->
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+
+	<cxf:bus>
+		<cxf:features>
+			<cxf:logging />
+		</cxf:features>
+	</cxf:bus>
+	
+	<!-- The Service endpoint serviceName="s:CustomerFinderEndpointService"
+                    xmlns:s="http://mds.upc.com/services/ws/CustomerService"-->
+	<!-- See http://incubator.apache.org/cxf/faq.html regarding CXF + Spring AOP -->
+
+
+    <jaxws:endpoint id="personProvisioningService"
+        implementor="name.marmac.tutorials.java.cxf.services.web.soap.personservice.impl.PersonProvisioningPortTypeImpl"
+        address="/services/ws/PersonService"
+        wsdlLocation="WEB-INF/wsdl/personProvisioningService.wsdl"
+        endpointName="e:PersonProvisioningPort"
+        serviceName="s:PersonProvisioningService"
+             xmlns:e="http://marmac.name/tutorials/java/cxf/services/web/soap/personservice/"
+             xmlns:s="http://marmac.name/tutorials/java/cxf/services/web/soap/personservice/"
+        bus="cxf">
+
+    </jaxws:endpoint>
+
+    <!-- -->
+    <jaxws:endpoint id="customerProvisioningService"
+        implementor="name.marmac.tutorials.java.cxf.services.web.soap.customerservice.impl.CustomerProvisioningPortTypeJAXWSImpl"
+        address="/services/ws/CustomerService"
+
+        endpointName="e:CustomerProvisioningPort"
+        serviceName="s:CustomerProvisioningService"
+             xmlns:e="http://marmac.name/tutorials/java/cxf/services/web/soap/customerservice/"
+             xmlns:s="http://marmac.name/tutorials/java/cxf/services/web/soap/customerservice/"
+        bus="cxf">
+
+    </jaxws:endpoint>
+
+
+    <!-- The Web Service implementation bean
+	<bean id="customerProvisioningPortTypeImpl"
+          class="name.marmac.tutorials.java.cxf.services.web.soap.personservice.impl.PersonProvisioningPortTypeImpl/>
+    -->
+</beans>
+

@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>name.marmac.tutorials.java</groupId>
+    	<artifactId>java-tech-tutorials</artifactId>
+    	<version>1.0.4-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>cxf</artifactId>
+    <packaging>pom</packaging>
+
+    <name>JAVA TECH TUTORIALS :: CXF </name>
+    <url>cxf</url>
+
+    <modules>
+        <module>cxf-simple</module>
+        <module>cxf-rs</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- Apache CXF Dependencies -->
+        <dependency>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-core</artifactId>
+          <version>${cxf.version}</version>
+        </dependency>
+
+
+
+
+
+        <dependency>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-transports-http</artifactId>
+          <version>${cxf.version}</version>
+        </dependency>
+
+        <dependency>
+           <groupId>org.apache.cxf</groupId>
+           <artifactId>cxf-rt-transports-http-jetty</artifactId>
+           <version>${cxf.version}</version>
+        </dependency>
+        <!-- -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-databinding-aegis</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-databinding-jaxb</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-local</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+    </dependencies>
+
+    <reporting>
+          <outputDirectory>${basedir}/target/site</outputDirectory>
+    </reporting>
+
+
+</project>

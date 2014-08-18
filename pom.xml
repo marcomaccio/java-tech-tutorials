@@ -1,0 +1,307 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+    <groupId>name.marmac.tutorials.java</groupId>
+    <artifactId>java-tech-tutorials</artifactId>
+    <version>1.0.4-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>jaxb</module>
+        <module>cxf</module>
+	<module>cukes</module>
+    </modules>
+
+    <name>JAVA TECH TUTORIALS</name>
+    <description>Various Tutorial to test different area of the Java Language</description>
+
+    <url>http://docs.maccio-ch.homelinux.net/tutorials/java-tech-tutorial</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+        <maven-jaxb2-plugin.version>0.8.3</maven-jaxb2-plugin.version>
+
+        <source.java.compliancy.version>1.7</source.java.compliancy.version>
+        <target.java.compliancy.version>1.7</target.java.compliancy.version>
+
+        <jaxb-api.version>2.2.0</jaxb-api.version>
+        <jaxb2-basics.version>0.6.5</jaxb2-basics.version>
+        <jaxb2-basics-annotate.version>0.6.5</jaxb2-basics-annotate.version>
+        <jsr311-api.version>2.2.0</jsr311-api.version>
+
+        <cxf.version>2.7.6</cxf.version>
+        <spring.version>3.2.2.RELEASE</spring.version>
+        <jetty-maven-plugin.version>7.4.0.RC0</jetty-maven-plugin.version>
+
+        <slf4j.version>1.6.6</slf4j.version>
+        <slf4j-log4j12.version>1.7.5</slf4j-log4j12.version>
+        <log4j.version>1.2.17</log4j.version>
+        <junit.version>4.11</junit.version>
+    </properties>
+
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav-jackrabbit</artifactId>
+                <version>1.0-beta-7</version>
+            </extension>
+        </extensions>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <source>${source.java.compliancy.version}</source>
+                    <target>${target.java.compliancy.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.5.2</version>
+                <executions>
+                  <execution>
+                    <goals>
+                      <goal>clean</goal>
+                    </goals>
+                  </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.2</version>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <tagBase>http://code.maccio-ch.homelinux.net/svn/tutorials/java-tech-tutorial/tags</tagBase>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.fusesource.mvnplugins</groupId>
+                <artifactId>maven-graph-plugin</artifactId>
+                <version>1.9</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.6</version>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <scm>
+        <connection>scm:svn:http://code.maccio-ch.homelinux.net/svn/tutorials/java-tech-tutorial/trunk/java-tech-tutorial</connection>
+        <developerConnection>scm:svn:http://code.maccio-ch.homelinux.net/svn/tutorials/java-tech-tutorial/trunk/java-tech-tutorial</developerConnection>
+        <url>http://code.maccio-ch.homelinux.net/svn/tutorials/java-tech-tutorial/trunk/java-tech-tutorial</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>marmac-m2-repository-snapshot</id>
+            <name>MARMAC Maven 2 Repository Snapshot</name>
+            <url>http://repo.maccio-ch.homelinux.net/content/repositories/snapshots/</url>
+            <uniqueVersion>false</uniqueVersion>
+            <layout>default</layout>
+        </snapshotRepository>
+        <repository>
+            <id>marmac-m2-repository-release</id>
+            <name>MARMAC Maven 2 Repository Release</name>
+            <url>http://repo.maccio-ch.homelinux.net/content/repositories/releases/</url>
+            <uniqueVersion>false</uniqueVersion>
+            <layout>default</layout>
+        </repository>
+        <site>
+            <id>marmac-m2-docs-website-dav</id>
+            <url>dav:http://docs.maccio-ch.homelinux.net/tutorials/java-tech-tutorial</url>
+        </site>
+    </distributionManagement>
+
+    <ciManagement>
+        <system>jenkins</system>
+        <url>http://ci.maccio-ch.homelinux.net/job/TUTORIAL_JavaTech_BasicBuild/</url>
+        <notifiers>
+          <notifier>
+            <type>mail</type>
+            <sendOnError>true</sendOnError>
+            <sendOnFailure>true</sendOnFailure>
+            <sendOnSuccess>false</sendOnSuccess>
+            <sendOnWarning>false</sendOnWarning>
+            <configuration><address>marcus.maccio@gmail.com</address></configuration>
+          </notifier>
+        </notifiers>
+    </ciManagement>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+          <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+          <version>${slf4j-log4j12.version}</version>
+        </dependency>
+    </dependencies>
+
+    <!-- REPORTING SECTION - START -->
+    <reporting>
+      <outputDirectory>${basedir}/target/site</outputDirectory>
+      <plugins>
+        <!-- Java doc plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.9</version>
+            <configuration>
+                <aggregate>false</aggregate>
+                <show>private</show>
+                <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+                <docletArtifact>
+                    <groupId>org.umlgraph</groupId>
+                    <artifactId>doclet</artifactId>
+                    <version>5.1</version>
+                </docletArtifact>
+                <!-- Styling -->
+                <!-- Stylesheet -->
+                <stylesheetfile>${basedir}/src/javadoc/api/stylesheet.css</stylesheetfile>
+                <!-- Directory containing the styling resources (pics, ...) -->
+                <javadocDirectory>${basedir}/src/javadoc/api/</javadocDirectory>
+                <!-- true to include styling resources into generated site -->
+                <docfilessubdirs>true</docfilessubdirs>
+                <additionalparam>
+                    -inferrel -attributes -types -visibility -inferdep -quiet -hide java.* -collpackages java.util.* -qualify -postfixpackage
+                    -nodefontsize 9
+                    -nodefontpackagesize 7
+                </additionalparam>
+                <!-- Apple's JVM sometimes requires more memory -->
+                <additionalJOption>-J-Xmx1024m</additionalJOption>
+                <verbose>true</verbose>
+            </configuration>
+        </plugin>
+
+        <!-- Source Xref -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jxr-plugin</artifactId>
+          <version>2.3</version>
+        </plugin>
+
+        <!-- Maven Project Info Reports -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>2.6</version>
+        </plugin>
+
+        <!-- Unit Test plugin -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.13</version>
+        </plugin>
+        <!-- -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+            <version>2.13</version>
+        </plugin>
+
+        <!-- Changes Report Plugin -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-changes-plugin</artifactId>
+            <version>2.8</version>
+        </plugin>
+
+        <!-- PMD -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <version>2.7.1</version>
+            <configuration>
+                <linkXRef>true</linkXRef>
+                <sourceEncoding>utf-8</sourceEncoding>
+                <minimumTokens>100</minimumTokens>
+                <targetJdk>1.5</targetJdk>
+                <rulesets>
+                    <ruleset>/rulesets/basic.xml</ruleset>
+                    <ruleset>/rulesets/braces.xml</ruleset>
+                    <ruleset>/rulesets/naming.xml</ruleset>
+                    <ruleset>/rulesets/design.xml</ruleset>
+                </rulesets>
+            </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-changes-plugin</artifactId>
+          <version>2.8</version>
+        </plugin>
+
+
+        <!-- CodeHaus maven plugins -->
+
+        <!-- Cobertura Test coverage plugin -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+
+        <!-- taglist plugin to generate to do List -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>taglist-maven-plugin</artifactId>
+          <version>2.4</version>
+        </plugin>
+
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>jdepend-maven-plugin</artifactId>
+            <version>2.0-beta-2</version>
+        </plugin>
+
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <version>2.5.2</version>
+            <configuration>
+              <jvmArgs>-Xmx256m</jvmArgs>
+              <jvmArgs>-XX:MaxPermSize=256m</jvmArgs>
+            </configuration>
+            <!-- Usually findbugs needs a lot of memory, change these values if needed. -->
+        </plugin>
+
+
+        <!-- Atlassian Clover Plugin
+        <plugin>
+            <groupId>com.atlassian.maven.plugins</groupId>
+            <artifactId>maven-clover2-plugin</artifactId>
+            <version>3.1.10.1</version>
+        </plugin>
+        -->
+       </plugins>
+    </reporting>
+</project>

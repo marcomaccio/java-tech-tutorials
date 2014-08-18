@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<exam:customer
+        xmlns:exam="http://marmac.name/tutorials/java/jaxb/jaxbsimple/example1/">
+
+  <exam:customerId>12345</exam:customerId>
+  <exam:firstName>Marco</exam:firstName>
+  <exam:lastName>Maccio</exam:lastName>
+  <exam:country>Switzerland</exam:country>
+</exam:customer>

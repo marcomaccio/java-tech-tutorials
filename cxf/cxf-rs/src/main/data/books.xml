@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<booksType xmlns="http://marmac.name/tutorials/java/cxf/services/web/rest/model/to/books">
+ <books isbn="123456">
+     <id>1</id>
+     <title>The Lord of Ring</title>
+     <authors>
+         <author>
+             <firstname>Marco</firstname>
+             <lastname>Maccio</lastname>
+         </author>
+     </authors>
+     <chapters>
+         <chapter>
+             <title>Chapter 1</title>
+             <id>1</id>
+         </chapter>
+
+     </chapters>
+ </books>
+</booksType>

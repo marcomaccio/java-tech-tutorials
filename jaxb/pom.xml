@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>name.marmac.tutorials.java</groupId>
+    	<artifactId>java-tech-tutorials</artifactId>
+    	<version>1.0.4-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>jaxb</artifactId>
+    <packaging>pom</packaging>
+
+    <name>JAVA TECH TUTORIALS :: JAXB</name>
+    <description>Tutorial to understand and test JAXB-2 API</description>
+    <url>jaxb</url>
+
+    <modules>
+        <module>jaxb-simple</module>
+        <module>xmlclientserver</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <jaxb.version>2.2.4-1</jaxb.version>
+
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+              <artifactId>jaxb-impl</artifactId>
+              <version>${jaxb.version}</version>
+        </dependency>
+    </dependencies>
+
+    <reporting>
+          <outputDirectory>${basedir}/target/site</outputDirectory>
+    </reporting>
+
+</project>

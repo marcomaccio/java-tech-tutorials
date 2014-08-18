@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wadl:application xmlns:wadl="http://wadl.dev.java.net/2009/02"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:customerns="http://marmac.name/tutorials/java/cxf/model/to/customers/">
+
+    <wadl:grammars>
+        <wadl:include href="../xsd/customers.xsd" />
+    </wadl:grammars>
+
+    <wadl:resources base="http://localhost:9092/services/rest">
+
+        <!-- This will generate the Interface -->
+        <wadl:resource  path="/customerservice" id="CustomerProvisioningService">
+            <wadl:resource  path="/customers">
+
+                <wadl:method name="POST" id="createCustomers">
+                    <wadl:request>
+                        <wadl:representation mediaType="application/xml" element="customerns:customers" />
+                        <wadl:representation mediaType="application/json" element="customerns:customers"/>
+                    </wadl:request>
+                    <wadl:response status="201" description="Asset Created">
+                        <wadl:representation mediaType="application/xml" element="customerns:customers"/>
+                        <wadl:representation mediaType="application/json" element="customerns:customers"/>
+                    </wadl:response>
+
+                </wadl:method>
+
+                <wadl:method name="GET" id="getCustomersByQuery">
+                    <wadl:request>
+                        <wadl:param name="limit"    type="xsd:int"      style="query" required="false" />
+                        <wadl:param name="offset"   type="xsd:int"      style="query" required="false" />
+                        <wadl:param name="id"       type="xsd:string"   style="query" required="false"/>
+                    </wadl:request>
+                    <wadl:response status="200" >
+                        <wadl:representation mediaType="application/xml"    element="customerns:customers"/>
+                        <wadl:representation mediaType="application/json"   element="customerns:customers"/>
+                    </wadl:response>
+                    <wadl:response status="404">
+                        <wadl:representation mediaType="application/xml"    element="customerns:unknownCustomerFault"/>
+                        <wadl:representation mediaType="application/json"   element="customerns:unknownCustomerFault"/>
+                    </wadl:response>
+                </wadl:method>
+
+
+                <wadl:resource path="/{id}">
+                    <wadl:param name="id" type="xsd:string" style="template" required="true"/>
+                    <wadl:method name="GET" id="getCustomerById">
+                        <wadl:response status="200">
+                            <wadl:representation mediaType="application/xml"    element="customerns:customers"/>
+                            <wadl:representation mediaType="application/json"   element="customerns:customers"/>
+                        </wadl:response>
+                        <wadl:response status="404">
+                            <wadl:representation mediaType="application/xml"    element="customerns:unknownCustomerFault"/>
+                            <wadl:representation mediaType="application/json"   element="customerns:unknownCustomerFault"/>
+                        </wadl:response>
+                    </wadl:method>
+
+                </wadl:resource>
+            </wadl:resource>
+        </wadl:resource>
+
+
+    </wadl:resources>
+
+</wadl:application>

@@ -1,0 +1,29 @@
+<booksLibrary xmlns="http://marmac.name/tutorials/java/cxf/services/web/rest/model/to/library/">
+
+<books>
+    <book isbn="123445">
+        <id>string</id>
+        <title>string</title>
+        <authors>
+            <author>
+                <firstname>string</firstname>
+                <lastname>string</lastname>
+            </author>
+            <author>
+                <firstname>string</firstname>
+                <lastname>string</lastname>
+            </author>
+        </authors>
+        <chapters>
+            <chapter>
+                <title>string</title>
+                <id>string</id>
+            </chapter>
+            <chapter>
+                <title>string</title>
+                <id>string</id>
+            </chapter>
+        </chapters>
+    </book>
+</books>
+</booksLibrary>

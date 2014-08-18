@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:persns="http://marmac.name/tutorials/java/jaxb/jaxbsimple/example2/"
+        targetNamespace="http://marmac.name/tutorials/java/jaxb/jaxbsimple/example2/"
+        attributeFormDefault="unqualified"
+        elementFormDefault="qualified" >
+
+    <xsd:complexType name="personInfoType">
+        <xsd:sequence>
+            <xsd:element name="customerId" type="xsd:string"/>
+            <xsd:element name="firstName" type="xsd:string"/>
+            <xsd:element name="lastName" type="xsd:string"/>
+            <xsd:element name="country" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="customer" type="persns:personInfoType"/>
+
+</xsd:schema>

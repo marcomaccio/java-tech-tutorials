@@ -1,0 +1,26 @@
+JAXB XML Client Server
+
+* Introduction
+
+  The JAXB XML Client Server it's an example of an Client- Server Interaction via a TCP/IP socket connection in which the message exchange is based on XML.
+
+  The communication between the client and the server is stateful and the xml exchanged via socket is
+
+* Communication model
+
+** Synchronous Simple Use Case that describes the main part of the communication model:
+
+  Connection to the server
+  Server Session opening
+  Client Session opening
+  Client command request
+  Server command reply
+  Server session closure
+  Client session closure
+
+** Synchronous and Asynchronous use case
+
+
+* Protocol structure
+
+  Sequence Diagram of Communication Model

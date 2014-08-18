@@ -1,0 +1,15 @@
+name/marmac/tutorials/java/cxf/services/web/soap/personservice/model/to/package-info.class
+name/marmac/tutorials/java/cxf/services/web/soap/personservice/UnknownPersonFaultException.class
+name/marmac/tutorials/java/cxf/services/web/soap/personservice/model/to/SearchParamsType.class
+name/marmac/tutorials/java/cxf/services/web/soap/personservice/model/to/ObjectFactory.class
+name/marmac/tutorials/java/cxf/services/web/soap/personservice/PersonProvisioningPortType.class
+name/marmac/tutorials/java/cxf/services/web/soap/personservice/model/to/PersonTO.class
+name/marmac/tutorials/java/cxf/services/web/soap/customerservice/CustomerProvisioningPortType.class
+name/marmac/tutorials/java/cxf/services/web/soap/personservice/PersonProvisioningService.class
+name/marmac/tutorials/java/cxf/services/web/soap/customerservice/model/to/CustomerTO.class
+name/marmac/tutorials/java/cxf/services/web/soap/customerservice/model/to/SearchParamsType.class
+name/marmac/tutorials/java/cxf/services/web/soap/personservice/impl/PersonProvisioningPortTypeImpl.class
+name/marmac/tutorials/java/cxf/services/web/soap/customerservice/impl/CustomerProvisioningPortTypeJAXWSImpl.class
+name/marmac/tutorials/java/cxf/services/web/soap/personservice/PersonProvisioningPortTypeImpl.class
+name/marmac/tutorials/java/cxf/services/web/soap/customerservice/UnknownCustomerFaultException.class
+name/marmac/tutorials/java/cxf/services/web/soap/personservice/model/to/UnknownPersonFaultType.class
