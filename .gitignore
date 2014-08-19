@@ -1,0 +1,16 @@
+# Java settings #
+.class
+
+# Maven settings #
+*/target/*
+*/target/**
+
+# IntelliJ settings #
+*.idea
+*.iml
+*.iws
+
+# Package files #
+*.jar
+*.war
+*.ear
