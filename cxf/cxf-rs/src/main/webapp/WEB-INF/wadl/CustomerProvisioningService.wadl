@@ -5,7 +5,7 @@
                   xmlns:customerns="http://marmac.name/tutorials/java/cxf/model/to/customers/">
 
     <wadl:grammars>
-        <wadl:include href="../xsd/customers.xsd" />
+        <wadl:include href="../xsd/Customers.xsd" />
     </wadl:grammars>
 
     <wadl:resources base="http://localhost:9092/services/rest">
