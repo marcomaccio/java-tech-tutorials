@@ -303,7 +303,7 @@
                                     <goal>java</goal>
                                 </goals>
                                 <configuration>
-                                    <mainClass>name.marmac.tutorials.java.cxf.services.web.rest.client.CustomerProvisioningWebClient</mainClass>
+                                    <mainClass>name.marmac.tutorials.java.cxf.services.web.rest.clients.webclient.CustomerProvisioningWebClient</mainClass>
                                 </configuration>
                             </execution>
                         </executions>

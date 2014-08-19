@@ -17,5 +17,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>name.marmac.tutorials.java</groupId>
+            <artifactId>cxf-rs</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

@@ -6,11 +6,18 @@
 */target/**
 
 # IntelliJ settings #
-*.idea
+*.idea/
 *.iml
 *.iws
+*.ipr
+
+# Eclipse working files
+.settings
+.project
+.classpath
 
 # Package files #
 *.jar
 *.war
 *.ear
+
