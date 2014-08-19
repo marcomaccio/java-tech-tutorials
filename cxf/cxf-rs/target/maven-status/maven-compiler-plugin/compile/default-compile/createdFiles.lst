@@ -1,9 +1,0 @@
-name/marmac/tutorials/java/cxf/model/to/customers/package-info.class
-name/marmac/tutorials/java/cxf/model/to/customers/ObjectFactory.class
-name/marmac/tutorials/java/cxf/services/web/rest/api/customerservice/CustomerProvisioningService.class
-org/w3/_2001/xmlschema/Adapter1.class
-name/marmac/tutorials/java/cxf/model/to/customers/CustomerTOType.class
-name/marmac/tutorials/java/cxf/model/to/customers/UnKnownCustomerTOType.class
-name/marmac/tutorials/java/cxf/model/to/customers/CustomersTOType.class
-name/marmac/tutorials/java/cxf/services/web/rest/server/impl/jaxrs/customerservice/CustomerServiceJAXRSImpl.class
-name/marmac/tutorials/java/cxf/services/web/rest/client/CustomerProvisioningWebClient.class
