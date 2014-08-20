@@ -21,11 +21,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
-        <maven-jaxb2-plugin.version>0.8.3</maven-jaxb2-plugin.version>
-
         <source.java.compliancy.version>1.7</source.java.compliancy.version>
         <target.java.compliancy.version>1.7</target.java.compliancy.version>
+
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+        <maven-jaxb2-plugin.version>0.8.3</maven-jaxb2-plugin.version>
+        <maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>2.6</maven-failsafe-plugin.version>
 
         <jaxb-api.version>2.2.0</jaxb-api.version>
         <jaxb2-basics.version>0.6.5</jaxb2-basics.version>
@@ -33,7 +35,7 @@
         <jsr311-api.version>2.2.0</jsr311-api.version>
 
         <cxf.version>2.7.6</cxf.version>
-        <spring.version>3.2.2.RELEASE</spring.version>
+        <spring.version>3.2.4.RELEASE</spring.version>
         <jetty-maven-plugin.version>7.4.0.RC0</jetty-maven-plugin.version>
 
         <slf4j.version>1.6.6</slf4j.version>
@@ -55,7 +57,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.0</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>${source.java.compliancy.version}</source>
                     <target>${target.java.compliancy.version}</target>
