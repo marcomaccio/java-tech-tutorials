@@ -2,8 +2,7 @@
 *.class
 
 # Maven settings #
-*/target/*
-*/target/**
+target/
 
 # IntelliJ settings #
 *.idea/
