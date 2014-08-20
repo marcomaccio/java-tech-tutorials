@@ -22,28 +22,24 @@
 		</cxf:features>
 	</cxf:bus>
 
-    <!-- Service based on CustomerProvisioningService.wadl   -->
-    <jaxrs:server id="customerservice"
+    <!--Serverside: Service based on CustomerProvisioningService.wadl   -->
+    <jaxrs:server id="customerProvisioningService"
             address="/services/rest/"
             bus="cxf" docLocation="classpath:/WEB-INF/wadl/CustomerProvisioningService.wadl">
         <jaxrs:serviceBeans>
             <ref bean="customerService"/>
         </jaxrs:serviceBeans>
-
         <!--
         <jaxrs:schemaLocations>
             <jaxrs:schemaLocation>classpath:WEB-INF/wadl/customerprovisioning.wadl</jaxrs:schemaLocation>
             <jaxrs:schemaLocation>classpath:WEB-INF/xsd/books-example1.xsd</jaxrs:schemaLocation>
         </jaxrs:schemaLocations>
         -->
-
-
         <jaxrs:providers>
             <ref bean="jaxbProvider"/>
             <ref bean="jsonjaxbProvider" />
         </jaxrs:providers>
     </jaxrs:server>
-
 
     <!--  -->
     <bean id="customerService"
