@@ -1,20 +1,33 @@
 package name.marmac.tutorials.java.cxf.services.web.rest.tests.clients.webclient;
 
-import name.marmac.tutorials.java.cxf.services.web.rest.api.customerservice.CustomerProvisioningService;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
+import name.marmac.tutorials.java.cxf.model.to.customers.CustomersTOType;
+import name.marmac.tutorials.java.cxf.model.to.customers.ObjectFactory;
+import org.apache.cxf.jaxrs.client.WebClient;
+import org.apache.cxf.jaxrs.provider.JAXBElementProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by marcomaccio on 20/08/2014.
+ * Created by marcomaccio on 27/08/2014.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:/applicationContext-test.xml" })
 public abstract class AbstractWebClient {
 
-    @Autowired
-    @Qualifier("customerProvisioningClient")
-    protected CustomerProvisioningService customerProvisioningProxyService;
+    private static final transient Logger LOGGER = LoggerFactory.getLogger(AbstractWebClient.class);
+
+    protected ObjectFactory   mCustomersTOTypeObjectFactory;
+    protected WebClient       mCxfWebClient = null;
+
+    public AbstractWebClient(String url){
+        //Set up the JAXB ObjectFactory to create the Java Classes to serialize/deserialize the xml
+        mCustomersTOTypeObjectFactory = new ObjectFactory();
+        //Set up the cxf WebClient
+        List<Object> providers = new ArrayList<Object>();
+        providers.add( new JacksonJaxbJsonProvider() );
+        providers.add( new JAXBElementProvider<CustomersTOType>());
+        mCxfWebClient = WebClient.create(url, providers);
+    }
 }

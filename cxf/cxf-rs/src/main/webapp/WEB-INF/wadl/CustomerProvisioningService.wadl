@@ -8,7 +8,7 @@
         <wadl:include href="../xsd/Customers.xsd" />
     </wadl:grammars>
 
-    <wadl:resources base="http://localhost:9092/services/rest">
+    <wadl:resources base="http://localhost:9092/cxf-rs/services/rest">
 
         <!-- This will generate the Interface -->
         <wadl:resource  path="/customerservice" id="CustomerProvisioningService">

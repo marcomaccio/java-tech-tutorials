@@ -4,6 +4,7 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import name.marmac.tutorials.java.cxf.model.to.customers.CustomersTOType;
 import name.marmac.tutorials.java.cxf.model.to.customers.ObjectFactory;
 import org.apache.cxf.jaxrs.client.WebClient;
+import org.apache.cxf.jaxrs.provider.JAXBElementProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,6 +30,7 @@ public class CustomerProvisioningWebClient {
         //Set up the cxf WebClient
         List<Object> providers = new ArrayList<Object>();
         providers.add( new JacksonJaxbJsonProvider() );
+        providers.add( new JAXBElementProvider<CustomersTOType>());
         mCxfWebClient = WebClient.create(url, providers);
     }
 
