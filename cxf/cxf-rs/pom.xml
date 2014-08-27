@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>cxf-rs</artifactId>
+    <packaging>war</packaging>
 
     <name>JAVA TECH TUTORIALS :: CXF :: CXF-RS</name>
     <description>A Simple Tutorial on REStful API with Apache CXF </description>
