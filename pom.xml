@@ -10,6 +10,7 @@
         <module>jaxb</module>
         <module>cxf</module>
 	<module>cukes</module>
+        <module>swagger-ui</module>
     </modules>
 
     <name>JAVA TECH TUTORIALS</name>

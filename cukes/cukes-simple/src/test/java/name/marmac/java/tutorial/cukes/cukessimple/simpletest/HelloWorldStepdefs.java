@@ -1,8 +1,8 @@
 package name.marmac.java.tutorial.cukes.cukessimple.simpletest;
 
-import cucumber.annotation.en.Given;
-import cucumber.annotation.en.Then;
-import cucumber.annotation.en.When;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import name.marmac.java.tutorial.cukes.cukessimple.helloworld.Hello;
 
 import static org.junit.Assert.assertEquals;
