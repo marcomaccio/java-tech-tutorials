@@ -9,8 +9,10 @@
     <modules>
         <module>jaxb</module>
         <module>cxf</module>
-	<module>cukes</module>
+	    <module>cukes</module>
+        <!--
         <module>swagger-ui</module>
+        -->
     </modules>
 
     <name>JAVA TECH TUTORIALS</name>
@@ -35,7 +37,7 @@
         <jaxb2-basics-annotate.version>0.6.5</jaxb2-basics-annotate.version>
         <jsr311-api.version>2.2.0</jsr311-api.version>
 
-        <cxf.version>2.7.6</cxf.version>
+        <cxf.version>2.7.8</cxf.version>
         <spring.version>3.2.4.RELEASE</spring.version>
         <jetty-maven-plugin.version>7.4.0.RC0</jetty-maven-plugin.version>
 
@@ -50,7 +52,7 @@
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
                 <artifactId>wagon-webdav-jackrabbit</artifactId>
-                <version>1.0-beta-7</version>
+                <version>2.4</version>
             </extension>
         </extensions>
 
@@ -88,7 +90,9 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
-                    <tagBase>http://code.maccio-ch.homelinux.net/svn/tutorials/java-tech-tutorial/tags</tagBase>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                    <preparationGoals>clean verify</preparationGoals>
+                    <goals>deploy</goals>
                 </configuration>
             </plugin>
 
@@ -107,9 +111,10 @@
     </build>
 
     <scm>
-        <connection>scm:svn:http://code.maccio-ch.homelinux.net/svn/tutorials/java-tech-tutorial/trunk/java-tech-tutorial</connection>
-        <developerConnection>scm:svn:http://code.maccio-ch.homelinux.net/svn/tutorials/java-tech-tutorial/trunk/java-tech-tutorial</developerConnection>
-        <url>http://code.maccio-ch.homelinux.net/svn/tutorials/java-tech-tutorial/trunk/java-tech-tutorial</url>
+        <connection>scm:git:ssh://github.com/marcomaccio/java-tech-tutorials.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/marcomaccio/java-tech-tutorials.git</developerConnection>
+        <url>https://github.com/marcomaccio/java-tech-tutorials</url>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
