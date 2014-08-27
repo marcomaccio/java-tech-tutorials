@@ -25,7 +25,7 @@
     <!--Serverside: Service based on CustomerProvisioningService.wadl   -->
     <jaxrs:server id="customerProvisioningService"
             address="/services/rest/"
-            bus="cxf" docLocation="classpath:/WEB-INF/wadl/CustomerProvisioningService.wadl">
+            bus="cxf" >
         <jaxrs:serviceBeans>
             <ref bean="customerService"/>
         </jaxrs:serviceBeans>
