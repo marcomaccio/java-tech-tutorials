@@ -10,9 +10,6 @@
         <module>jaxb</module>
         <module>cxf</module>
 	    <module>cukes</module>
-        <!--
-        <module>swagger-ui</module>
-        -->
     </modules>
 
     <name>JAVA TECH TUTORIALS</name>
@@ -27,7 +24,7 @@
         <source.java.compliancy.version>1.7</source.java.compliancy.version>
         <target.java.compliancy.version>1.7</target.java.compliancy.version>
 
-        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
         <maven-jaxb2-plugin.version>0.8.3</maven-jaxb2-plugin.version>
         <maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>2.6</maven-failsafe-plugin.version>
@@ -37,14 +34,23 @@
         <jaxb2-basics-annotate.version>0.6.5</jaxb2-basics-annotate.version>
         <jsr311-api.version>2.2.0</jsr311-api.version>
 
-        <cxf.version>2.7.8</cxf.version>
+        <findbugs-maven-plugin.version>3.0.0</findbugs-maven-plugin.version>
+
+        <cxf.version>2.7.15</cxf.version>
         <spring.version>3.2.4.RELEASE</spring.version>
         <jetty-maven-plugin.version>7.4.0.RC0</jetty-maven-plugin.version>
+
+        <swagger-jaxrs_2.10.version>1.3.2</swagger-jaxrs_2.10.version>
 
         <slf4j.version>1.6.6</slf4j.version>
         <slf4j-log4j12.version>1.7.5</slf4j-log4j12.version>
         <log4j.version>1.2.17</log4j.version>
         <junit.version>4.11</junit.version>
+
+        <sonar-maven-plugin.version>2.6</sonar-maven-plugin.version>
+        <sonar-jacoco-listeners.version>3.2</sonar-jacoco-listeners.version>
+        <versions-maven-plugin.version>2.2</versions-maven-plugin.version>
+
     </properties>
 
     <build>
@@ -55,6 +61,21 @@
                 <version>2.4</version>
             </extension>
         </extensions>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>${versions-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonar-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
 
         <plugins>
             <plugin>
@@ -107,6 +128,18 @@
                 <version>2.6</version>
             </plugin>
 
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${findbugs-maven-plugin.version}</version>
+            </plugin>
+
         </plugins>
     </build>
 
@@ -140,7 +173,7 @@
 
     <ciManagement>
         <system>jenkins</system>
-        <url>http://ci.maccio-ch.homelinux.net/job/TUTORIAL_JavaTech_BasicBuild/</url>
+        <url>http://cis.maccio-ch.homelinux.net/job/TUTORIAL_JavaTech_BasicBuild/</url>
         <notifiers>
           <notifier>
             <type>mail</type>
