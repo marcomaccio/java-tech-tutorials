@@ -15,6 +15,6 @@ public class ProxyClientTest extends AbstractProxyClient {
     @Test
     public void testGetCustomerByQuery(){
         CustomersTOType customersByQuery = customerProvisioningProxyService.getCustomersByQuery(0,0,null);
-        Assert.assertEquals(3L, customersByQuery.getTotalRecords());
+        Assert.assertEquals(4L, customersByQuery.getTotalRecords());
     }
 }
