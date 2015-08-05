@@ -26,7 +26,7 @@
 
     <!--Clientside: Service based on CustomerProvisioningService.wadl   -->
     <jaxrs:client id="customerProvisioningClient"
-                  address="http://localhost:9092/cxf-rs/services/rest"
+                  address="http://localhost:9092/cxf-rs/crm/provisioning/v1"
                   serviceClass="name.marmac.tutorials.java.cxf.services.web.rest.api.customerservice.CustomerProvisioningService">
 
         <jaxrs:providers>
@@ -39,6 +39,7 @@
         </jaxrs:headers>
 
     </jaxrs:client>
+
 
 
 

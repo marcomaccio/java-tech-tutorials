@@ -21,7 +21,7 @@ public class CustomerProvisioningTest extends AbstractWebClient {
 
     public CustomerProvisioningTest()
     {
-        super("http://localhost:9092/cxf-rs/services/rest/customerservice");
+        super("http://localhost:9092/cxf-rs/crm/provisioning/v1/customerservice");
     }
 
     /**
@@ -37,7 +37,7 @@ public class CustomerProvisioningTest extends AbstractWebClient {
      *
      */
     @Test
-    public void testCreateCustomer(){
+    public void testCreateCustomerJSON(){
 
         //Create the CustomersTOType by the factory
         CustomersTOType customersTOType = customerObjectFactory.createCustomersTOType();
@@ -63,5 +63,40 @@ public class CustomerProvisioningTest extends AbstractWebClient {
         //CustomersTOType retrievedCustomer = (CustomersTOType)response.getEntity();
         //Verify the result
         Assert.assertEquals(HttpServletResponse.SC_CREATED, response.getStatus());
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void testCreateCustomerXML(){
+
+        //Create the CustomersTOType by the factory
+        CustomersTOType customersTOType = customerObjectFactory.createCustomersTOType();
+
+        //Create the CustomerTOType by the factory
+        CustomerTOType customerTOType = customerObjectFactory.createCustomerTOType();
+
+        //Set the Customer's attributes
+        customerTOType.setFirstname("Test-01-firstname");
+        customerTOType.setLastname("Test-01-lastname");
+        customerTOType.setCustomerId("IT-001");
+        customerTOType.setCreationDate(new GregorianCalendar());
+        customerTOType.setLastUpdateDate(new GregorianCalendar());
+
+        //Add the customerTOTYpe to the customersTOType (singular to plural)
+        customersTOType.getCustomers().add(customerTOType);
+
+        WebClient.getConfig(mCxfWebClient).getHttpConduit().getClient().setReceiveTimeout(10000000);
+
+        //Call the CustomerProvisioningService by the proxy
+        Response response = mCxfWebClient.type(MediaType.APPLICATION_XML).accept(MediaType.APPLICATION_XML).path("/customers").post(customersTOType);
+
+        //
+        //Verify the result
+        Assert.assertEquals(HttpServletResponse.SC_CREATED, response.getStatus());
+
+        //CustomersTOType retrievedCustomer = (CustomersTOType)response.getEntity();
+        //Assert.assertEquals(customersTOType,retrievedCustomer);
     }
 }

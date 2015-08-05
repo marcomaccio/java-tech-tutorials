@@ -199,9 +199,12 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <!--
-                            <contextPath>cxf-rs</contextPath>
-                            -->
+                            <connectors>
+                                <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                                    <port>9092</port>
+                                    <maxIdleTime>60000</maxIdleTime>
+                                </connector>
+                            </connectors>
                             <daemon>true</daemon>
                         </configuration>
                     </execution>
@@ -339,13 +342,17 @@
             <version>2.2.1</version>
         </dependency>
 
-        <!--
         <dependency>
-            <groupId>org.codehaus.jettison</groupId>
-            <artifactId>jettison</artifactId>
-            <version>1.3</version>
+            <groupId>com.wordnik</groupId>
+            <artifactId>swagger-jaxrs_2.10</artifactId>
+            <version>${swagger-jaxrs_2.10.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.ws.rs</groupId>
+                    <artifactId>jsr311-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-        -->
     </dependencies>
 
     <reporting>

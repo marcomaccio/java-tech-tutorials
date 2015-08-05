@@ -24,17 +24,19 @@
 
     <!--Serverside: Service based on CustomerProvisioningService.wadl   -->
     <jaxrs:server id="customerProvisioningService"
-            address="/services/rest/"
-            bus="cxf" >
+            address="/crm/provisioning/v1"
+            bus="cxf">
         <jaxrs:serviceBeans>
             <ref bean="customerService"/>
         </jaxrs:serviceBeans>
-        <!--
+
         <jaxrs:schemaLocations>
+            <!--
             <jaxrs:schemaLocation>classpath:WEB-INF/wadl/customerprovisioning.wadl</jaxrs:schemaLocation>
+            -->
             <jaxrs:schemaLocation>classpath:WEB-INF/xsd/books-example1.xsd</jaxrs:schemaLocation>
         </jaxrs:schemaLocations>
-        -->
+
         <jaxrs:providers>
             <ref bean="jaxbProvider"/>
             <ref bean="jsonjaxbProvider" />
@@ -48,7 +50,9 @@
 
     <bean id="jaxbProvider" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider">
         <property name="marshallAsJaxbElement" value="true"/>
+        <!--
         <property name="schemaHandler" ref="schemaHolder"/>
+        -->
     </bean>
 
     <!--
@@ -59,14 +63,33 @@
 
     <bean id="jsonjaxbProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
 
-    <bean id="schemaHolder" class="org.apache.cxf.jaxrs.utils.schemas.SchemaHandler">
-       <property name="schemas" ref="theSchemas"/>
-    </bean>
-
-    <util:list id="theSchemas">
-      <value>classpath:/WEB-INF/xsd/Customers.xsd</value>
-    </util:list>
+    <!-- SWAGGER SPECIFIC CONFIGURATION - START -->
+        <bean id="swaggerResourceJSON"
+              class="com.wordnik.swagger.jaxrs.listing.ApiListingResourceJSON" />
 
 
+        <!-- Swagger writers -->
+        <bean id="resourceWriter" class="com.wordnik.swagger.jaxrs.listing.ResourceListingProvider" />
+        <bean id="apiWriter" class="com.wordnik.swagger.jaxrs.listing.ApiDeclarationProvider" />
+
+
+        <!-- Swagger configuration -->
+        <bean id="swaggerConfig" class="com.wordnik.swagger.jaxrs.config.BeanConfig">
+            <property name="resourcePackage" value="name.marmac.tutorials.java.cxf.services.web.rest.server.impl.jaxrs.customerservice"/>
+            <property name="version" value="${project.version}"/>
+            <property name="basePath" value="/api-docs"/>
+            <property name="title" value="CUSTOMER PROVISIONING REST API"/>
+            <property name="description" value="This is the CUSTOMER PROVISIONING Interface"/>
+            <property name="contact" value="marco.maccio@marmac.name"/>
+            <property name="license" value="Apache 2.0 License"/>
+            <property name="licenseUrl" value="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+            <property name="scan" value="true"/>
+        </bean>
+
+        <!-- Exception mapper
+        <bean id="exceptionMapper" class="com.wordnik.swagger.sample.resource.SampleExceptionMapper" />
+        -->
+
+    <!-- SWAGGER SPECIFIC CONFIGURATION - END -->
 </beans>
 

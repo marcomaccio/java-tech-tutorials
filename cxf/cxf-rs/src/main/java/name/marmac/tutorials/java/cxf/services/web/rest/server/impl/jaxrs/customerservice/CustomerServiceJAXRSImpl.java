@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.util.GregorianCalendar;
 
 /**
@@ -66,11 +67,13 @@ public class CustomerServiceJAXRSImpl implements CustomerProvisioningService {
                                                @QueryParam("offset") Integer offset,
                                                @QueryParam("id") String id) {
         LOGGER.debug("HTTP METHOD - GET getCustomersByQuery has been called ");
+        Response httpResponse;
 
         //Set the HTTP STATUS CODE to 200 according to the HTTP specifications
         setHTTPResponseCode(HttpServletResponse.SC_OK);
-
+        httpResponse = Response.status(HttpServletResponse.SC_OK).entity(mCustomerList).build();
         return mCustomerList;
+
     }
 
     @GET
