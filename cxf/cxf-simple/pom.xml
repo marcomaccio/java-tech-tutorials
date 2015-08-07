@@ -10,7 +10,7 @@
     <packaging>war</packaging>
 
     <name>JAVA TECH TUTORIALS :: CXF :: CXF-SIMPLE</name>
-    <url>cxf-simple</url>
+    <url>cxf/cxf-simple</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
