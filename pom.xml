@@ -28,6 +28,7 @@
         <maven-jaxb2-plugin.version>0.8.3</maven-jaxb2-plugin.version>
         <maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>2.6</maven-failsafe-plugin.version>
+        <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
 
         <jaxb-api.version>2.2.0</jaxb-api.version>
         <jaxb2-basics.version>0.6.5</jaxb2-basics.version>
@@ -51,6 +52,7 @@
         <sonar-jacoco-listeners.version>3.2</sonar-jacoco-listeners.version>
         <versions-maven-plugin.version>2.2</versions-maven-plugin.version>
 
+        <umlgraph.version>5.6.6</umlgraph.version>
     </properties>
 
     <build>
@@ -211,79 +213,71 @@
     <reporting>
       <outputDirectory>${basedir}/target/site</outputDirectory>
       <plugins>
-        <!-- Java doc plugin -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.9</version>
-            <configuration>
-                <aggregate>false</aggregate>
-                <show>private</show>
-                <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
-                <docletArtifact>
-                    <groupId>org.umlgraph</groupId>
-                    <artifactId>doclet</artifactId>
-                    <version>5.1</version>
-                </docletArtifact>
-                <!-- Styling -->
-                <!-- Stylesheet -->
-                <stylesheetfile>${basedir}/src/javadoc/api/stylesheet.css</stylesheetfile>
-                <!-- Directory containing the styling resources (pics, ...) -->
-                <javadocDirectory>${basedir}/src/javadoc/api/</javadocDirectory>
-                <!-- true to include styling resources into generated site -->
-                <docfilessubdirs>true</docfilessubdirs>
-                <additionalparam>
-                    -inferrel -attributes -types -visibility -inferdep -quiet -hide java.* -collpackages java.util.* -qualify -postfixpackage
-                    -nodefontsize 9
-                    -nodefontpackagesize 7
-                </additionalparam>
-                <!-- Apple's JVM sometimes requires more memory -->
-                <additionalJOption>-J-Xmx1024m</additionalJOption>
-                <verbose>true</verbose>
-            </configuration>
-        </plugin>
+          <!-- Java doc plugin with UML Diagram-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <configuration>
+                    <aggregate>true</aggregate>
+                    <show>private</show>
+                    <show>public</show>
 
-        <!-- Source Xref -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jxr-plugin</artifactId>
-          <version>2.3</version>
-        </plugin>
+                    <!-- Doclet Library to generate the UML Diagram -->
+                    <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+                    <docletArtifact>
+                      <groupId>org.umlgraph</groupId>
+                      <artifactId>umlgraph</artifactId>
+                      <version>${umlgraph.version}</version>
+                    </docletArtifact>
 
-        <!-- Maven Project Info Reports -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>2.7</version>
-        </plugin>
+                    <additionalparam>-views -all</additionalparam>
+                    <useStandardDocletOptions>true</useStandardDocletOptions>
+                    <failOnError>false</failOnError>
+                </configuration>
+            </plugin>
 
-        <!-- Unit Test plugin -->
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.18.1</version>
-        </plugin>
-        <!-- -->
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-report-plugin</artifactId>
-            <version>2.18.1</version>
-        </plugin>
+            <!-- Source Xref -->
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-jxr-plugin</artifactId>
+              <version>2.3</version>
+            </plugin>
+
+            <!-- Maven Project Info Reports -->
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-project-info-reports-plugin</artifactId>
+              <version>2.7</version>
+            </plugin>
+
+            <!-- Unit Test plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+            </plugin>
+            <!-- -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.18.1</version>
+            </plugin>
 
 
 
-        <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>jdepend-maven-plugin</artifactId>
-            <version>2.0</version>
-        </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jdepend-maven-plugin</artifactId>
+                <version>2.0</version>
+            </plugin>
 
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>sonar-maven-plugin</artifactId>
-        </plugin>
+            <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>sonar-maven-plugin</artifactId>
+            </plugin>
 
-      </plugins>
+        </plugins>
 
     </reporting>
 </project>
