@@ -10,6 +10,7 @@
         <module>jaxb</module>
         <module>cxf</module>
 	    <module>cukes</module>
+        <module>pf4j</module>
     </modules>
 
     <name>JAVA TECH TUTORIALS</name>
@@ -157,14 +158,14 @@
         <snapshotRepository>
             <id>marmac-m2-repo</id>
             <name>MARMAC Maven 2 Repository Snapshot</name>
-            <url>http://repo.maccio-ch.homelinux.net/content/repositories/snapshots/</url>
+            <url>http://rms.maccio-ch.homelinux.net/nexus/content/repositories/mm-m2-snapshots/</url>
             <uniqueVersion>false</uniqueVersion>
             <layout>default</layout>
         </snapshotRepository>
         <repository>
             <id>marmac-m2-repo</id>
             <name>MARMAC Maven 2 Repository Release</name>
-            <url>http://repo.maccio-ch.homelinux.net/content/repositories/releases/</url>
+            <url>http://rms.maccio-ch.homelinux.net/nexus/content/repositories/mm-m2-releases/</url>
             <uniqueVersion>false</uniqueVersion>
             <layout>default</layout>
         </repository>

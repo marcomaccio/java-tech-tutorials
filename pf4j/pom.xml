@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>java-tech-tutorials</artifactId>
+        <groupId>name.marmac.tutorials.java</groupId>
+        <version>1.0.4-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>pf4j</artifactId>
+    <packaging>pom</packaging>
+    <name>JAVA TECH TUTORIALS :: Pf4J </name>
+    <description>A series of examples with the Plugin Framework PF4J of  decebals/pf4j</description>
+    <modules>
+        <module>pf4j-spring-demo</module>
+    </modules>
+</project>
